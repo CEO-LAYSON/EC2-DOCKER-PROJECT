@@ -1,20 +1,43 @@
+# EC2-DOCKER-PROJECT 🐳🚀
+
+A RESTful API built with **Node.js**, **Express**, and **PostgreSQL**, fully containerized using **Docker** and deployed on an **AWS EC2** instance as part of a final year project at the **University of Dodoma**.
+
+---
+
+## 🔧 Features
+
+- `GET /students` → Returns list of student names and programs
+- `GET /subjects` → Returns list of subjects and their academic year
+
+---
+
+## 🛠️ Tech Stack
+
+- Node.js + Express.js
+- PostgreSQL
+- Docker & Docker Compose
+- AWS EC2 (Ubuntu)
+- Git & GitHub
+
+---
+
 ## 📦 Docker Containerization
 
-This project is fully containerized using **Docker**. The Dockerfile sets up the Node.js environment and prepares the API for production use.
+This project is fully containerized using **Docker**. The Dockerfile sets up the Node.js environment and prepares the API for production.
 
 ### 🔧 Build Docker Image
 
 ```bash
-docker build -t ec2-api-project .
+docker build -t ec2-docker-project-api .
 ```
 
 ### ▶️ Run Container Locally
 
 ```bash
-docker run -p 5000:5000 ec2-api-project
+docker run -p 5000:5000 ec2-docker-project-api
 ```
 
-Test endpoints:
+Test endpoints locally:
 
 - `http://localhost:5000/students`
 - `http://localhost:5000/subjects`
@@ -23,83 +46,113 @@ Test endpoints:
 
 ## 🧩 Docker Compose Setup
 
-We use **Docker Compose** to run the API alongside a PostgreSQL container.
+We use **Docker Compose** to manage multiple services (Node.js API + PostgreSQL).
 
 ### 📄 docker-compose.yml
 
-This file defines:
+Defines:
 
-- `api` container (Node.js)
-- `postgres` container (PostgreSQL)
-- Networking, volumes, environment variables
+- `api` container
+- `postgres` container
+- Networking, volumes, env variables
 
 ### ▶️ Run with Compose
 
 ```bash
-docker compose up --build
+docker-compose up --build
 ```
 
-To stop:
+Stop containers:
 
 ```bash
-docker compose down
+docker-compose down
 ```
 
 ---
 
 ## ☁️ Docker Deployment on AWS EC2
 
-On your EC2 Ubuntu instance:
+To deploy:
 
-1. Install Docker and Docker Compose
-2. Clone this repo
-3. Run:
+1. Launch an Ubuntu EC2 instance
+2. Install Docker and Docker Compose
+3. Clone this repository
+4. Run:
 
 ```bash
-docker compose up -d
+docker-compose up -d
 ```
 
-Your app is now containerized and publicly accessible.
+Access API from browser:
+
+```http
+http://51.21.251.240:5000/students
+http://51.21.251.240:5000/subjects
+```
+
+✅ Logs will show:
+
+```
+✅ Server is running on http://localhost:5000
+```
 
 ---
+
+## 🐘 PostgreSQL Setup
+
+Login to PostgreSQL container:
+
+```bash
+docker exec -it ec2-docker-project-postgres-1 psql -U postgres
+```
 
 ## 🐳 Docker Hub Image
 
-The API Docker image is available on Docker Hub:
+Your Docker image is available at:
 
-🔗 **[https://hub.docker.com/r/ceolayson/udom-api](https://hub.docker.com/r/ceolayson/udom-api)**
+🔗 **[https://hub.docker.com/r/crntechnologies/udom-api](https://hub.docker.com/r/crntechnologies/udom-api)**
 
-Pull with:
+Pull it:
 
 ```bash
-docker pull ceolayson/udom-api
+docker pull crntechnologies/udom-api
 ```
 
 ---
 
-## 📷 Docker Logs & Screenshot
+## 📷 Screenshots & Logs
 
-- `docker_ps.png`: Shows running containers using `docker ps`
-- `docker_logs.txt`: Contains output logs from your Docker containers
+- `docker_ps.png` → Screenshot showing active containers from `docker ps`
+- `docker_logs.txt` → Log output captured via:
 
-> **Author:** CEO-LAYSON | University of Dodoma | CS421 – Application Deployment and Management
+```bash
+docker logs ec2-docker-project-api-1 > docker_logs.txt
+```
 
-## 🚀 How to Build Docker Image
+Transfer logs to local PC:
 
-docker build -t ec2-docker-project-api .
+```bash
+scp -i ~/Downloads/layson/key-pair/DomKey.pem ubuntu@51.21.251.240:~/docker_logs.txt .
+```
 
-## 🐳 How to Run with Docker Compose
-
-docker compose up --build
-
-## 📦 Docker Hub Link
-
-https://hub.docker.com/r/crntechnologies/udom-api
+---
 
 ## 🧯 Troubleshooting
 
-- If containers fail, check logs: `docker logs container_id`
-- Ensure PostgreSQL container is running
-- Ensure ports (5000) are exposed and available
+- If containers fail, check logs:
 
-> **Author:** CEO-LAYSON | University of Dodoma | CS421 – Application Deployment and Management
+```bash
+docker logs container_id
+```
+
+- Ensure PostgreSQL container is healthy
+- Ensure port `5000` is open in your EC2 security group
+
+---
+
+## 👨‍🎓 Project Info
+
+**Author:** CEO-LAYSON  
+**University:** University of Dodoma  
+**Course:** CS421 – Application Deployment and Management  
+**Assignment:** API Deployment Using Docker and EC2
