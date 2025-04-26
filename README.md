@@ -1,5 +1,3 @@
-                 |
-
 ## 📦 Docker Containerization
 
 This project is fully containerized using **Docker**. The Dockerfile sets up the Node.js environment and prepares the API for production use.
