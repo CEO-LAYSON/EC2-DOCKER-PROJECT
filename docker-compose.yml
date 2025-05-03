@@ -19,7 +19,7 @@ services:
     environment:
       POSTGRES_DB: udomdb
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: LAYSON2809
+      POSTGRES_PASSWORD: NDENZA2809
     volumes:
       - pgdata:/var/lib/postgresql/data
 
