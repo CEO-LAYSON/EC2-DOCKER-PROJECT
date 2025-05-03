@@ -9,7 +9,7 @@ services:
       - PGHOST=postgres
       - PGUSER=postgres
       - PGDATABASE=udomdb
-      - PGPASSWORD=LAYSON2809
+      - PGPASSWORD=NDENZA2809
       - PGPORT=5432
       - PORT=5000
 
