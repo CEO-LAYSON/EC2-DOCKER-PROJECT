@@ -86,9 +86,15 @@ docker-compose up -d
 Access API from browser:
 
 ```http
-http://51.21.251.240:5000/students
-http://51.21.251.240:5000/subjects
+http://13.50.4.199:5000/students
+http://13.50.4.199:5000/subjects
 ```
+
+Access Front-END:
+
+- `http://13.50.4.199:80`
+
+---
 
 ✅ Logs will show:
 
