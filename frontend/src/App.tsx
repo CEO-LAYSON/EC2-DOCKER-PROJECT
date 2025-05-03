@@ -43,7 +43,7 @@ function App() {
   const fetchData = async (endpoint: "students" | "subjects") => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://51.21.251.240:5000/${endpoint}`);
+      const res = await axios.get(`http://16.170.235.227:5001/${endpoint}`);
       if (endpoint === "students") {
         setStudents(res.data);
       } else {
